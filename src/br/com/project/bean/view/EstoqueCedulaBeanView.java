@@ -1,7 +1,7 @@
 package br.com.project.bean.view;
 
+
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -13,12 +13,13 @@ import org.springframework.stereotype.Controller;
 import br.com.framework.interfac.crud.InterfaceCrud;
 import br.com.project.bean.geral.BeanManagedViewAbstract;
 import br.com.project.geral.controller.EstoqueCedulaController;
-import br.com.project.model.classes.Cedula;
 import br.com.project.model.classes.EstoqueCedula;
 
 @Controller
 @Scope(value = "view")
 @ManagedBean(name = "estoqueCedulaBeanView")
+
+
 public class EstoqueCedulaBeanView extends BeanManagedViewAbstract {
 
 	/**
@@ -84,6 +85,10 @@ public class EstoqueCedulaBeanView extends BeanManagedViewAbstract {
 		return "";
 	}
 	
+
+	@Autowired
+	private EstoqueCedulaController estoqueEstoqueCedulaController;
+
 
 	@Override
 	protected Class<?> getClassImplement() {

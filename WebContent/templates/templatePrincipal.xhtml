@@ -90,16 +90,20 @@
  								
  								<p:submenu label="Cedulas" id="subMenuCedula">
  									<!-- <sec:ifAnyGranted roles="USER"> -->
+
  									
 	 									<p:menuitem value="Reabastecer Cedulas" id="menuRecarregarCedulas"
 	 									  action="/recarga/rec_cedulas.jsf?faces-redirect=true" immediate="true">
+
+										</p:menuitem>
 	 									
-	 									</p:menuitem>
+	 									
  									<!-- </sec:ifAnyGranted> -->
  								</p:submenu>
  								
  							<!-- </sec:ifAnyGranted> -->
  							
+
  								<p:submenu label="Saque" id="subMenuSaque">
  									<!-- <sec:ifAnyGranted roles="USER"> -->
  									
@@ -114,7 +118,10 @@
 	 						    <!-- <p:menuitem value="Saque" id="menuSaque"
 	 						    onclick="redirecionarPagina('#{request.contextPath}', '/saque/saq_cedulas');"
 	 						    ajax="true" /> -->
- 						    <!-- </sec:ifAnyGranted> -->
+
+ 							
+ 							
+
  						    
  							
  							<p:menuitem onclick="javascript:logout('#{request.contextPath}');"

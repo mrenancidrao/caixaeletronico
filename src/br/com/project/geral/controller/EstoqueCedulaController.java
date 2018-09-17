@@ -1,5 +1,6 @@
 package br.com.project.geral.controller;
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,10 +26,12 @@ public class EstoqueCedulaController extends ImplementacaoCrud<EstoqueCedula> im
 	@Autowired
 	private RepositoryEstoqueCedula repositoryEstoqueCedula;
 
+
 	public List<EstoqueCedula> getCedulasDisponiveis() throws Exception  {
 		
 		List<EstoqueCedula> estoqueCedula = super.findListByQueryDinamica(" from EstoqueCedula where estoque > 0");
 		
 		return estoqueCedula;
 	}
+
 }

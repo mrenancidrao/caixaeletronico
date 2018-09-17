@@ -33,6 +33,7 @@ public class CedulaController extends ImplementacaoCrud<Cedula> implements Inter
 		return list;
 	}
 	
+
 	public List<Cedula> getCedulasDisponiveis() throws Exception  {
 		
 		List<Cedula> cedulas = super.findListByQueryDinamica(" from Cedula c where exists (select 1 from EstoqueCedula ec where ec.cedula = c.id and ec.estoque > 0)");
@@ -42,6 +43,7 @@ public class CedulaController extends ImplementacaoCrud<Cedula> implements Inter
 	
 	
 	
+
 	@Autowired
 	private SrvCedulaImpl srvCedula;
 	
