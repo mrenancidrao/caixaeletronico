@@ -174,7 +174,7 @@ public class SaqueCedulaBeanView extends BeanManagedViewAbstract {
 															for (int l = (valorSaque/listEstoqueCedula.get(c+3).getCedula().getValor()); l >= 0; l--) {
 																int tmp4 = l * listEstoqueCedula.get(c+3).getCedula().getValor();
 
-																Object[] qCedula4 = new Integer[2];
+																Object[] qCedula4 = new Object[2];
 																qCedula4[0] = (Integer) l;
 																qCedula4[1] = (Cedula) listEstoqueCedula.get(c+3).getCedula();
 																
