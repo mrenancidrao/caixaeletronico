@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags"
+	xmlns:util="http://java.sun.com/jsf/composite/components"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:composition template="/templates/templatePrincipal.xhtml">
+		<ui:define name="corpo">
+			<div id="divFormSaque">
+				<h:form id="formSaqCedulas" prependId="false">
+					<p:panel header="Caixa Eletrônico - Saque " id="panelSaqCedulas">
+					<br/>
+						<h:panelGrid id="gridSaqCedulas" columns="2">
+							<h:outputLabel value="  Informe o valor do saque: "/>
+							<p:inputText id="valorSaque"  required="true" requiredMessage="Informe o valor a ser sacado." value="#{saqueCedulaBeanView.valorSaque}" style="width: 150px" >
+							</p:inputText>
+							
+							<p:message for="valorSaque"/>
+					        <h:outputLabel/>
+							<br/>					        
+					        <!--  " -->
+						</h:panelGrid>
+						
+						
+							<p:commandButton value="Sacar" ajax="false" action="#{saqueCedulaBeanView.saque}" update="formSaqCedulas" onclick="PF('dlg3').show();">
+							</p:commandButton>
+						<br/>
+					</p:panel>
+
+				<p:dialog modal="true" closable="true" header="Opções de Cédulas" widgetVar="dlg3" showEffect="explode" hideEffect="bounce" height="200">
+					<h:panelGrid columns="1" style="margin-bottom:10px" cellpadding="5">
+						<p:selectOneRadio id="opcoesRadio" value="#{saqueCedulaBeanView.opcao}"
+							layout="grid" columns="1">
+							<f:selectItems value="#{saqueCedulaBeanView.listOpcoesSaqueView}"  />
+							
+						</p:selectOneRadio>
+
+							<p:commandButton value="Ok" style="height:40px; width:100px; background:#CDCDC1;corder: 1px solid #FFFFF;"
+								actionListener="#{saqueCedulaBeanView.save}" ajax="false" />
+					</h:panelGrid>
+				</p:dialog>
+
+
+		<script>
+			$(function() {
+				if ($('#valorSaque').val() != '')
+					PF('dlg3').show();
+			});
+
+		</script>
+
+
+			</h:form>
+			</div>	
+			
+			<br/>
+			
+<!-- 			<div id="divTableEstoque">
+				<p:panel header="Estoque Caixa Eletrônico">
+				<br/>	
+					<p:dataTable id="tableEstoque" value="#{estoqueCedulaBeanView.list}" var="obj" emptyMessage="Não existem valores para mostrar">
+						
+						<p:column>
+							<center>
+								<f:facet name="header">Cédula</f:facet>
+								<h:graphicImage library="img" name="#{obj.cedula.imagem}" styleClass="bordaImagem"/>
+								<h:outputText value="#{obj.cedula.imagem}"/>
+							</center>
+						</p:column>
+
+						<p:column>
+							<center>
+								<f:facet name="header">Descrição</f:facet>
+								<b><h:outputText value="Cédula de #{obj.cedula.descricao}"/></b>
+							</center>
+						</p:column>
+						
+						<p:column>
+							<center>
+								<f:facet name="header">Estoque Atual</f:facet>
+								<b><h:outputText value="#{obj.estoque}"/></b>
+							</center>
+						</p:column>
+						
+						<p:column>
+							<center>
+								<h:graphicImage library="img" name="zerar.png" styleClass="bordaImagem"/>
+								<p:commandLink actionListener="#{estoqueCedulaBeanView.zerarEstoque}"
+								id="zerarEstoqueCedula" ajax="false" value="zerar">
+									<f:setPropertyActionListener target="#{estoqueCedulaBeanView.estoqueAtualizado}" value="#{obj}"/>
+								</p:commandLink>
+							</center>
+						</p:column>
+					</p:dataTable>
+				</p:panel>
+			</div> -->
+		</ui:define>
+	</ui:composition>
+</html>

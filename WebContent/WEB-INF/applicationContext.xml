@@ -119,7 +119,6 @@
 	 
 	 	 <!-- Services -->
 	 <bean id="srvLogin" class="br.com.srv.implementacao.SrvLoginImpl" scope="singleton"/>
-	 <bean id="srvUsuario" class="br.com.srv.implementacao.SrvUsuarioImpl" scope="singleton"/>
 	 
 	 
 	 <!-- DAOS -->

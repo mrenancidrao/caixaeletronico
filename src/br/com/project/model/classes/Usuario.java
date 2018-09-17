@@ -3,14 +3,12 @@ package br.com.project.model.classes;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import org.hibernate.envers.Audited;
-
-@Audited
 @Entity
 public class Usuario implements Serializable {
 
@@ -25,6 +23,7 @@ public class Usuario implements Serializable {
 	
 	private boolean ativo = true;
 	
+	@Column(name = "ultimo_acesso")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date ultimoAcesso;
 	

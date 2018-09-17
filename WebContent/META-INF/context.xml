@@ -22,7 +22,7 @@
 		antiResourceLocking="false"
 		username="postgres"
 		password="postgres"
-		url="jdbc:postgresql://localhost:5432/caixa-eletronico?autoReconnect=true"
+		url="jdbc:postgresql://localhost:5432/caixaeletronico?autoReconnect=true"
 	/>
 
 </Context>

@@ -5,7 +5,7 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.repository.interfaces.RepositoryEntidade;
+import br.com.repository.interfaces.RepositoryUsuario;
 import br.com.srv.interfaces.SrvUsuario;
 
 @Service
@@ -14,7 +14,7 @@ public class SrvUsuarioImpl  implements SrvUsuario{
 	private static final long serialVersionUID = 1L;
 	
 	@Autowired
-	private RepositoryEntidade repositoryUsuario;
+	private RepositoryUsuario repositoryUsuario;
 
 	@Override
 	public Date getUltimoAcessoUsuarioLogado(String name) {

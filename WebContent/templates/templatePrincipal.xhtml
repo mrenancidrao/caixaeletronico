@@ -21,21 +21,25 @@
 	<h:outputScript name="jquery.maskedinput.js" library="javascript" id="jsMaskInputSistema" />
 	<h:outputScript name="scripty.js" library="javascript"	id="jsScriptSistema" />
 	<h:outputStylesheet name="estilo.css" library="css"	id="cssStiloSistema" />
+	
+
+	
+}
 
 </h:head>
 	
 <h:form id="formTemplate" prependId="false">
 	<h:outputStylesheet name="estilo.css" library="css" id="cssStyleSistema"/>
 	
-	<body>
+	<h:body>
 		<script type="text/javascript" charset="UTF-8">
-			$.noConflit();
+			$.noConflict();
 
-			$(document).keydown(function(e) {
-				if (e.which == 116){
-					return 116;
+			$(document).keydown(function(e){
+					if (e.which == 116){
+						return 116;
 					}
-			}); 
+				});
 		</script>
 		
 		<ui:include src="/templates/barraProgresso.xhtml" />
@@ -51,13 +55,91 @@
 				</span>
 				
 				<span id="dadoslogin"> Usuário: #{usuarioBeanView.usuarioLogadoSecurity}
-				
+					<br id="quebraUser"/>
+ 				  	 Último login:
+ 				  	 <h:outputLabel value="#{usuarioBeanView.ultimoAcesso}"
+ 				  	  id="saidaUltimoAcesso">
+						<f:convertDateTime locale="pt_BR" pattern="dd/MM/yyyy HH:mm:ss"
+						dateStyle="long" timeStyle="full" timeZone="GMT-03:00"/> 				  	 	
+ 				  	 </h:outputLabel>
+ 				  	 <br id="quebraUltimoAcesso"/>
+ 				  	 <br id="quebraUltimoAcesso2"/>
+ 				  	 <a href="#" onclick="javascript:logout('#{request.contextPath}')">Sair</a>
 				</span>
-			</div>		
+				
+				 
+			</div>
+
+			<div id="menu">
+				<span id="iniciarmenu"> <h:graphicImage library="img"
+						name="iconemenu.png" styleClass="bordaimagem" id="iconemenu">
+						  
+						</h:graphicImage>
+				</span>
+			</div>
 			
-		</div>
-	</body>
+			<div id="corpo" class="corpo">
+			   <ui:insert name="corpo" />
+			</div>
+			
+ 				<div id="barramenu">
+ 						<p:tieredMenu id="menuEsquerdo"
+ 						 style="width:185px; border: none; background:none; color:#000;">
+ 							
+  							<!-- <sec:ifAnyGranted roles="USER"> -->
+ 								
+ 								<p:submenu label="Cedulas" id="subMenuCedula">
+ 									<!-- <sec:ifAnyGranted roles="USER"> -->
+ 									
+	 									<p:menuitem value="Reabastecer Cedulas" id="menuRecarregarCedulas"
+	 									  action="/recarga/rec_cedulas.jsf?faces-redirect=true" immediate="true">
+	 									
+	 									</p:menuitem>
+ 									<!-- </sec:ifAnyGranted> -->
+ 								</p:submenu>
+ 								
+ 							<!-- </sec:ifAnyGranted> -->
+ 							
+ 								<p:submenu label="Saque" id="subMenuSaque">
+ 									<!-- <sec:ifAnyGranted roles="USER"> -->
+ 									
+	 									<p:menuitem value="Efetuar Saque" id="menuEfetuarSaque"
+	 									  action="/saque/saq_cedulas.jsf?faces-redirect=true" immediate="true">
+	 									
+	 									</p:menuitem>
+ 									<!-- </sec:ifAnyGranted> -->
+ 								</p:submenu>
+ 							
+ 							<!-- <sec:ifAnyGranted roles="USER"> -->
+	 						    <!-- <p:menuitem value="Saque" id="menuSaque"
+	 						    onclick="redirecionarPagina('#{request.contextPath}', '/saque/saq_cedulas');"
+	 						    ajax="true" /> -->
+ 						    <!-- </sec:ifAnyGranted> -->
+ 						    
+ 							
+ 							<p:menuitem onclick="javascript:logout('#{request.contextPath}');"
+ 							value="Sair" id="menusair" ajax="true"/>
+ 						</p:tieredMenu>
+ 				</div>
+
+			</div>
+			
+ 			<p:dialog widgetVar="enviarMsgDialog" id="alterarMsgDialog" width="800"
+				modal="true" resizable="false" height="360"
+				header="Enviar menssagem" appendToBody="false" dynamic="true">
+			</p:dialog>
+			
+ 		<p:dialog widgetVar="alterarSenhaDialog" id="alterarSenhaDialog" width="240" modal="true" resizable="false" 
+ 			height="170" header="Alterar Senha" dynamic="true" appendToBody="false">
+ 			corpo	
+ 		</p:dialog>	
+ 					
+	</h:body>
 </h:form>	
+
+ <script type="text/javascript" charset="UTF-8">
+	 carregarIdElementosPagina();
+ </script>
 
 </sec:isAuthenticated>	
 </html>

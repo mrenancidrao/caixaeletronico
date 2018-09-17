@@ -18,19 +18,22 @@
 	    access="hasAnyRole('ADMIN')" method="POST"/>
 	    
 	   <intercept-url pattern="/resources/components/**" 
-	   access="isAuthenticated() and hasAnyRole('USER')"/> 	
+	   access="isAuthenticated()"/> 	
 	   
 	   <intercept-url pattern="/resources/**" 
-	   access="isAuthenticated() and hasAnyRole('USER')"/>
+	   access="isAuthenticated()"/>
 	   
 	   <intercept-url pattern="/restrito/**" 
-		access="isAuthenticated() and hasAnyRole('USER')"/> 
+		access="isAuthenticated()"/> 
+		
+		<intercept-url pattern="/recarga/**" 
+		access="isAuthenticated()"/> 
 		
 		<intercept-url pattern="/error/**" 
 		access="isAnonymous() or isAuthenticated() or !isAuthenticated()"/>
 		
 		<intercept-url pattern="/templates/**"
-		 access="isAuthenticated() and hasAnyRole('USER')"/>
+		 access="isAuthenticated()"/>
 		 
 		 <intercept-url pattern="/cadastro/**" 
 		access="isAuthenticated() and hasAnyRole('USER')"/>

@@ -27,8 +27,7 @@ public class UsuarioBeanView extends BeanManagedViewAbstract{
 	private UsuarioController usuarioController;
 
 	public String getUsuarioLogadoSecurity() {
-		return "renan";
-		/*return contextoBean.getAuthentication().getName();*/
+		return contextoBean.getAuthentication().getName();
 	}
 	
 	public Date getUltimoAcesso() throws Exception {

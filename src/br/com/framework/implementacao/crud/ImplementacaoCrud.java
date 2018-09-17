@@ -215,7 +215,7 @@ public class ImplementacaoCrud<T> implements InterfaceCrud<T>{
 		return obj;
 	}
 	
-	public T findInuqueByProperty(Class<T> entidade, Object valor,
+	public T findUniqueByProperty(Class<T> entidade, Object valor,
 			String atributo, String condicao) throws Exception {
 		
 		validaSessionFactory();

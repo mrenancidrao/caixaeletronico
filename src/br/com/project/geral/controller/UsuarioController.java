@@ -21,8 +21,8 @@ public class UsuarioController extends ImplementacaoCrud<Usuario> implements
 	
 	
 	public Usuario findUserLogado(String userLogado) throws Exception {
-		return super.findInuqueByProperty(Usuario.class, 
-				userLogado, "login", " and usuario.ativo is true");
+		return super.findUniqueByProperty(Usuario.class, 
+				userLogado, "login", " and entity.ativo is true");
 	}
 	
 	public Date getUltimoAcessoUsuarioLogada(String login) {

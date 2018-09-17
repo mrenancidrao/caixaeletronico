@@ -24,7 +24,7 @@ public class ContextoBean implements Serializable {
 	private static final String USER_LOGADO_SESSAO = "userLogadoSessao";
 	
 	@Autowired
-	private UsuarioController entidadeController;
+	private UsuarioController usuarioController;
 	
 	@Autowired 
 	private SessionController sessionController;
@@ -38,20 +38,22 @@ public class ContextoBean implements Serializable {
 	}
 
 	public Usuario getUsuarioLogado() throws Exception{
-		Usuario entidade = (Usuario) getExternalContext().getSessionMap().get(USER_LOGADO_SESSAO);
+		Usuario usuario = (Usuario) getExternalContext().getSessionMap().get(USER_LOGADO_SESSAO);
 		
-		if (entidade == null || (entidade != null &&
-				!entidade.getLogin().equals(getUserPrincipal()))){
+		if (usuario == null || (usuario != null &&
+				!usuario.getLogin().equals(getUserPrincipal()))){
 			
 			if (getAuthentication().isAuthenticated()){
-				entidadeController.updateUltimoAcessoUser(getAuthentication().getName());
-				entidade = entidadeController.findUserLogado(getAuthentication().getName());
-				getExternalContext().getSessionMap().put(USER_LOGADO_SESSAO, entidade);		
-				sessionController.addSession(entidade.getLogin(),
+				usuarioController.updateUltimoAcessoUser(getAuthentication().getName());
+				
+				usuario = usuarioController.findUserLogado(getAuthentication().getName());
+				getExternalContext().getSessionMap().put(USER_LOGADO_SESSAO, usuario);		
+				
+				sessionController.addSession(usuario.getLogin(),
 						(HttpSession) getExternalContext().getSession(true));
 			}
 		}
-		return entidade;
+		return usuario;
 	}
 	
 	
