@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<title><ui:insert name="titulo">Caixa Eletrônico</ui:insert></title>
+
+
+	<h:outputScript name="primefaces.js" library="primefaces" id="jsPrime" />
+
+	<h:outputScript name="jquery.js" library="primefaces/jquery"
+		id="jsJquery" />
+
+	<h:outputScript name="jquery-plugins.js" library="primefaces/jquery"
+		id="jsJqueryPlugin" />
+
+	<h:outputScript name="jquery.cookie.js" library="javascript"
+		id="jsJaqueryCookie" />
+
+	<h:outputStylesheet name="jquery-ui.css" library="primefaces/jquery/ui"
+		id="jsJqueryUi" />
+
+	<h:outputStylesheet name="primefaces.css" library="primefaces"
+		id="jdPrimeCss" />
+
+	<h:outputScript name="jquery.maskMoney.min.js" library="javascript"
+		id="jsMaskMoneySistema" />
+
+	<h:outputScript name="jquery.maskedinput.js" library="javascript"
+		id="jsMaskInputSistema" />
+
+	<h:outputScript name="scripty.js" library="javascript"
+		id="jsScriptSistema" />
+
+	<h:outputStylesheet name="estilo.css" library="css"
+		id="cssStiloSistema" />
+
+</h:head>
+
+
+
+<h:form prependId="false" id="form">
+
+
+	<h:body>
+
+		 <h:messages />
+  
+             <p:panelGrid columns="2">
+                    <label>Host</label>
+                    <p:inputText value="#{ftpManager.hostName}" />
+  
+                    <label>Usuário</label>
+                    <p:inputText value="#{ftpManager.username}" />
+  
+                    <label>Senha</label>
+                    <p:password value="#{ftpManager.password}" />
+  
+                    <label>Diretório</label>
+                    <p:inputText value="#{ftpManager.newDir}" />
+  
+             </p:panelGrid>
+  
+             <p:commandButton value="Conectar" actionListener="#{ftpManager.conectar}"
+                    update="@form" />
+             <p:commandButton value="Mudar diretório"
+                    actionListener="#{ftpManager.mudarDiretorio}" update="@form" />
+             <p:commandButton value="Listar Arquivos"
+                    actionListener="#{ftpManager.listarArquivos}" update="@form" />
+  
+             <p:dataTable value="#{ftpManager.arquivos}" var="arq" id="dataTable">
+                    <p:column>
+                           #{arq}          
+                	</p:column>
+             </p:dataTable>	
+             
+            <div>
+				<p:commandButton type="button" onclick="PF('switcher').previous();"
+				    icon="ui-icon-circle-triangle-w" id="prev"/>
+				<p:commandButton type="button" onclick="PF('switcher').next();"
+				    icon="ui-icon-circle-triangle-e" id="next"/>
+				 
+				<p:imageSwitch effect="wipe" widgetVar="switcher" id="manuelSwitcher"
+				    slideshowAuto="false">
+				    <ui:repeat  value="#{ftpManager.arquivos}" var="arqs" id="manuelSwitcherImages">
+				        <img src="ftp://localhost/#{arqs}" id="image"/>
+				    </ui:repeat>
+				</p:imageSwitch>
+			</div>
+	
+	</h:body>
+
+<script>
+
+		
+</script>
+</h:form>
+</html>
